@@ -1,25 +1,21 @@
 use serde::{Deserialize, Serialize};
 use std::fmt::Display;
 
-use crate::{ContributorAccountAddress, ProjectId};
+type UserId = uuid::Uuid;
+type ProjectId = uuid::Uuid;
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub enum Event {
-	MemberAdded {
+	Created {
 		project_id: ProjectId,
-		contributor_account: ContributorAccountAddress,
 	},
-	MemberRemoved {
+	PaymentRequested {
 		project_id: ProjectId,
-		contributor_account: ContributorAccountAddress,
-	},
-	LeadContributorAdded {
-		project_id: ProjectId,
-		contributor_account: ContributorAccountAddress,
-	},
-	LeadContributorRemoved {
-		project_id: ProjectId,
-		contributor_account: ContributorAccountAddress,
+		id: uuid::Uuid,
+		recipient_id: UserId,
+		requestor_id: UserId,
+		amount_in_usd: u32,
+		reason: String,
 	},
 }
 

@@ -71,10 +71,8 @@ impl IdentifiableAggregate for Event {
 				| marketplace_domain::ContributionEvent::Reopened { id } => id.to_string(),
 			},
 			DomainEvent::Project(event) => match event {
-				marketplace_domain::ProjectEvent::MemberAdded { project_id, .. }
-				| marketplace_domain::ProjectEvent::MemberRemoved { project_id, .. }
-				| marketplace_domain::ProjectEvent::LeadContributorAdded { project_id, .. }
-				| marketplace_domain::ProjectEvent::LeadContributorRemoved { project_id, .. } =>
+				marketplace_domain::ProjectEvent::Created { project_id, .. }
+				| marketplace_domain::ProjectEvent::PaymentRequested { project_id, .. } =>
 					project_id.to_string(),
 			},
 			DomainEvent::Contributor(event) => match event {

@@ -57,8 +57,7 @@ pub use contributor::{
 mod projectors;
 pub use projectors::{
 	ApplicationProjector, ContributorWithGithubData as ContributorWithGithubDataProjector,
-	GithubContributionProjector, GithubProjectProjector, LeadContributorProjector,
-	MemberProjector as ProjectMemberProjector,
+	GithubContributionProjector, GithubProjectProjector,
 };
 
 mod payment;

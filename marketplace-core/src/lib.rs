@@ -126,9 +126,6 @@ fn inject_app(
 		database.clone(),
 	));
 
-	let project_member_projector = Arc::new(ProjectMemberProjector::new(database.clone()));
-	let lead_contributor_projector = Arc::new(LeadContributorProjector::new(database.clone()));
-
 	let contributor_projector = Arc::new(ContributorWithGithubDataProjector::new(
 		github_client.clone(),
 		database.clone(),
@@ -170,16 +167,6 @@ fn inject_app(
 			project_projector,
 			database.clone(),
 		))
-		.manage(RefreshProjectsMembers::new(
-			database.clone(),
-			project_member_projector,
-			database.clone(),
-		))
-		.manage(RefreshLeadContributors::new(
-			database.clone(),
-			lead_contributor_projector,
-			database.clone(),
-		))
 		.manage(RefreshContributors::new(
 			database.clone(),
 			contributor_projector,
@@ -188,7 +175,5 @@ fn inject_app(
 		.manage(database.clone() as Arc<dyn ApplicationProjectionRepository>)
 		.manage(database.clone() as Arc<dyn ContributionProjectionRepository>)
 		.manage(database.clone() as Arc<dyn ContributorProjectionRepository>)
-		.manage(database.clone() as Arc<dyn ProjectMemberProjectionRepository>)
-		.manage(database.clone() as Arc<dyn LeadContributorProjectionRepository>)
 		.manage(database as Arc<dyn ProjectProjectionRepository>)
 }

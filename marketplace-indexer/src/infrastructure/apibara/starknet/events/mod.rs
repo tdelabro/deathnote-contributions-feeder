@@ -104,30 +104,6 @@ impl TryFrom<Event> for ObservedEvent {
 					&event.from_address,
 					event.data,
 				)?),
-			_ if selector == project::MemberAdded::selector() =>
-				Ok(project::MemberAdded::to_domain_event(
-					&event.caller_address,
-					&event.from_address,
-					event.data,
-				)?),
-			_ if selector == project::MemberRemoved::selector() =>
-				Ok(project::MemberRemoved::to_domain_event(
-					&event.caller_address,
-					&event.from_address,
-					event.data,
-				)?),
-			_ if selector == project::LeadContributorAdded::selector() =>
-				Ok(project::LeadContributorAdded::to_domain_event(
-					&event.caller_address,
-					&event.from_address,
-					event.data,
-				)?),
-			_ if selector == project::LeadContributorRemoved::selector() =>
-				Ok(project::LeadContributorRemoved::to_domain_event(
-					&event.caller_address,
-					&event.from_address,
-					event.data,
-				)?),
 			_ => Err(Self::Error::Unsupported),
 		}?;
 
@@ -206,10 +182,6 @@ mod test {
 	#[case(selector::<contribution::Unassigned>(), "ContributionUnassigned")]
 	#[case(selector::<contribution::Validated>(), "ContributionValidated")]
 	#[case(selector::<contribution::GateChanged>(), "ContributionGateChanged")]
-	#[case(selector::<project::MemberAdded>(), "ProjectMemberAdded")]
-	#[case(selector::<project::MemberRemoved>(), "ProjectMemberRemoved")]
-	#[case(selector::<project::LeadContributorAdded>(), "ProjectLeadContributorAdded")]
-	#[case(selector::<project::LeadContributorRemoved>(), "ProjectLeadContributorRemoved")]
 	fn event_is_well_converted_from_apibara(
 		timestamp: NaiveDateTime,
 		#[case] selector: Bytes,
@@ -240,10 +212,8 @@ mod test {
 			DomainEvent::Project(event) =>
 				String::from("Project")
 					+ match event {
-						ProjectEvent::MemberAdded { .. } => "MemberAdded",
-						ProjectEvent::MemberRemoved { .. } => "MemberRemoved",
-						ProjectEvent::LeadContributorAdded { .. } => "LeadContributorAdded",
-						ProjectEvent::LeadContributorRemoved { .. } => "LeadContributorRemoved",
+						ProjectEvent::Created { .. } => "Created",
+						ProjectEvent::PaymentRequested { .. } => "PaymentRequested",
 					},
 			_ => unimplemented!("Off chain events"),
 		};
