@@ -83,6 +83,7 @@ pub async fn main() -> Result<()> {
 			routes::contributors::get_contributor_by_account,
 			routes::contributors::associate_github_account,
 			routes::contributors::register_discord_handle,
+			routes::payment_request::request_payment,
 		],
 	)
 	.mount(

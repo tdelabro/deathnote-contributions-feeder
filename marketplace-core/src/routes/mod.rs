@@ -5,6 +5,7 @@ pub mod cors;
 mod dto;
 pub mod graphql;
 pub mod health;
+pub mod payment_request;
 mod projects;
 
 pub use applications::*;
