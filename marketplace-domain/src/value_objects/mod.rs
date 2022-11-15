@@ -12,6 +12,6 @@ pub use blockchain::{ContractAddress, Network as BlockchainNetwork, TransactionH
 
 mod github;
 pub use github::{
-	Issue as GithubIssue, IssueNumber as GithubIssueNumber, ProjectId as GithubProjectId,
-	Repository as GithubRepo, User as GithubUser, UserId as GithubUserId,
+	GithubRepoId, Issue as GithubIssue, IssueNumber as GithubIssueNumber, Repository as GithubRepo,
+	User as GithubUser, UserId as GithubUserId,
 };

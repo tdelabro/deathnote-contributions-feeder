@@ -8,4 +8,4 @@ mod events;
 pub use events::Event;
 
 mod id;
-pub use id::Id;
+pub use id::Id as ProjectId;

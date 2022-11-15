@@ -32,7 +32,7 @@ impl GithubContributionProjector {
 	async fn on_create(
 		&self,
 		id: &ContributionId,
-		project_id: GithubProjectId,
+		project_id: GithubRepoId,
 		issue_number: GithubIssueNumber,
 		gate: u8,
 	) -> Result<(), Error> {
@@ -181,7 +181,7 @@ mod tests {
 	}
 
 	#[fixture]
-	fn project_id() -> GithubProjectId {
+	fn project_id() -> GithubRepoId {
 		123456
 	}
 
@@ -191,7 +191,7 @@ mod tests {
 	}
 
 	#[fixture]
-	fn github_issue(project_id: GithubProjectId, issue_number: GithubIssueNumber) -> GithubIssue {
+	fn github_issue(project_id: GithubRepoId, issue_number: GithubIssueNumber) -> GithubIssue {
 		GithubIssue {
 			project_id,
 			number: issue_number,
@@ -207,7 +207,7 @@ mod tests {
 	#[fixture]
 	fn contribution(
 		contribution_id: ContributionId,
-		project_id: GithubProjectId,
+		project_id: GithubRepoId,
 		gate: u8,
 		github_issue: GithubIssue,
 		issue_number: GithubIssueNumber,
@@ -236,7 +236,7 @@ mod tests {
 	#[fixture]
 	fn contribution_created_event(
 		contribution_id: ContributionId,
-		project_id: GithubProjectId,
+		project_id: GithubRepoId,
 		issue_number: GithubIssueNumber,
 		gate: u8,
 	) -> ContributionEvent {
@@ -290,7 +290,7 @@ mod tests {
 	async fn on_contribution_created_event(
 		mut contribution_projection_repository: MockContributionProjectionRepository,
 		mut github_client: MockGithubClient,
-		project_id: GithubProjectId,
+		project_id: GithubRepoId,
 		issue_number: GithubIssueNumber,
 		github_issue: GithubIssue,
 		contribution: GithubContribution,

@@ -5,7 +5,7 @@ use async_trait::async_trait;
 use log::error;
 use mapinto::ResultMapInto;
 use marketplace_domain::{
-	GithubClient, GithubClientError, GithubIssue, GithubIssueNumber, GithubProjectId, GithubRepo,
+	GithubClient, GithubClientError, GithubIssue, GithubIssueNumber, GithubRepo, GithubRepoId,
 	GithubUser, GithubUserId,
 };
 
@@ -13,7 +13,7 @@ use marketplace_domain::{
 impl GithubClient for Client {
 	async fn find_repository_by_id(
 		&self,
-		project_id: GithubProjectId,
+		project_id: GithubRepoId,
 	) -> Result<GithubRepo, GithubClientError> {
 		let repository = self
 			.repository_by_id(project_id)
@@ -32,7 +32,7 @@ impl GithubClient for Client {
 
 	async fn find_issue_by_id(
 		&self,
-		project_id: GithubProjectId,
+		project_id: GithubRepoId,
 		issue_number: GithubIssueNumber,
 	) -> Result<GithubIssue, GithubClientError> {
 		// Safe to cast, as long as there is no more than i64::Max (9_223_372_036_854_775_807)

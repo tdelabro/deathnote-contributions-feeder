@@ -1,12 +1,12 @@
 use url::Url;
-pub type ProjectId = u64;
+pub type GithubRepoId = u64;
 pub type IssueNumber = u64;
 pub type UserId = u64;
 
 #[derive(Debug, PartialEq, Eq, Clone)]
 pub struct Issue {
 	pub number: IssueNumber,
-	pub project_id: ProjectId,
+	pub project_id: GithubRepoId,
 	pub title: String,
 	pub description: Option<String>,
 	pub external_link: Url,
@@ -19,7 +19,7 @@ pub struct Issue {
 
 #[derive(Debug, PartialEq, Eq, Clone, Default)]
 pub struct Repository {
-	pub project_id: ProjectId,
+	pub project_id: GithubRepoId,
 	pub owner: String,
 	pub name: String,
 	pub description: Option<String>,

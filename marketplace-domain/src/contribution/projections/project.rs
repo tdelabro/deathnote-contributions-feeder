@@ -1,9 +1,9 @@
-use crate::{Contribution, GithubProjectId, Projection};
+use crate::{Contribution, GithubRepoId, Projection};
 use url::Url;
 
 #[derive(Debug, Clone, PartialEq, Eq, Default)]
 pub struct Project {
-	pub id: GithubProjectId,
+	pub id: GithubRepoId,
 	pub owner: String,
 	pub name: String,
 	pub url: Option<Url>,

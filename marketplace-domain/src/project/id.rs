@@ -1,3 +1,1 @@
-use crate::GithubProjectId;
-
-pub type Id = GithubProjectId;
+pub type Id = uuid::Uuid;

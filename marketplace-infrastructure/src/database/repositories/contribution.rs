@@ -128,7 +128,7 @@ impl ContributionProjectionRepository for Client {
 
 	fn list_by_project(
 		&self,
-		project_id: &GithubProjectId,
+		project_id: &GithubRepoId,
 	) -> Result<Vec<GithubContribution>, ContributionProjectionRepositoryError> {
 		let connection = self.connection().map_err(ContributionProjectionRepositoryError::from)?;
 

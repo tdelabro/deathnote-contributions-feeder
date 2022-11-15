@@ -22,7 +22,7 @@ pub struct Client {
 
 pub struct OctocrabIssue {
 	pub issue: octocrab::models::issues::Issue,
-	pub project_id: GithubProjectId,
+	pub project_id: GithubRepoId,
 }
 
 fn access_token_url() -> String {

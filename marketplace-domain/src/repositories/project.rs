@@ -13,6 +13,7 @@ pub enum Error {
 	Infrastructure(#[source] Box<dyn std::error::Error>),
 }
 
-pub trait Repository {
-	fn find_all_with_contributions(&self) -> Result<Vec<ProjectWithContributions>, Error>;
+pub trait Repository: Send + Sync {
+	fn create(&self, id: ProjectId) -> Result<ProjectId, Error>;
+	fn find(&self, id: ProjectId) -> Result<Project, Error>;
 }

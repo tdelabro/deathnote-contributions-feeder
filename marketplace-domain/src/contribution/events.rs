@@ -11,7 +11,7 @@ pub enum Event {
 	},
 	Created {
 		id: ContributionId,
-		project_id: GithubProjectId,
+		project_id: GithubRepoId,
 		issue_number: GithubIssueNumber,
 		gate: u8,
 	},
@@ -85,7 +85,7 @@ mod tests {
 	}
 
 	#[fixture]
-	fn project_id() -> GithubProjectId {
+	fn project_id() -> GithubRepoId {
 		123
 	}
 
@@ -112,7 +112,7 @@ mod tests {
 	#[rstest]
 	fn contribution_created_event_display_as_json(
 		contribution_id: ContributionId,
-		project_id: GithubProjectId,
+		project_id: GithubRepoId,
 		issue_number: GithubIssueNumber,
 		gate: u8,
 	) {

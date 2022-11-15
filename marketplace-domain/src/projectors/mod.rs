@@ -9,3 +9,6 @@ pub use application::ApplicationProjector;
 
 mod github_project;
 pub use github_project::GithubProjectProjector;
+
+mod project;
+pub use project::ProjectProjector;

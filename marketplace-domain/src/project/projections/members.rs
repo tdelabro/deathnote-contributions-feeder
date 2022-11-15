@@ -1,8 +1,8 @@
-use crate::{ContributorAccountAddress, GithubProjectId, Project, Projection};
+use crate::{ContributorAccountAddress, GithubRepoId, Project, Projection};
 
 #[derive(Debug, Clone, PartialEq, Eq, Default)]
 pub struct Member {
-	project_id: GithubProjectId,
+	project_id: GithubRepoId,
 	contributor_account_address: ContributorAccountAddress,
 }
 
@@ -12,7 +12,7 @@ impl Projection for Member {
 
 impl Member {
 	pub fn new(
-		project_id: GithubProjectId,
+		project_id: GithubRepoId,
 		contributor_account_address: ContributorAccountAddress,
 	) -> Self {
 		Self {
@@ -21,7 +21,7 @@ impl Member {
 		}
 	}
 
-	pub fn project_id(&self) -> &GithubProjectId {
+	pub fn project_id(&self) -> &GithubRepoId {
 		&self.project_id
 	}
 

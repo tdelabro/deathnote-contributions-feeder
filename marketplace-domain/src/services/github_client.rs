@@ -1,6 +1,4 @@
-use crate::{
-	GithubIssue, GithubIssueNumber, GithubProjectId, GithubRepo, GithubUser, GithubUserId,
-};
+use crate::{GithubIssue, GithubIssueNumber, GithubRepo, GithubRepoId, GithubUser, GithubUserId};
 use async_trait::async_trait;
 use mockall::automock;
 use thiserror::Error;
@@ -16,12 +14,11 @@ pub enum Error {
 pub trait GithubClient: Send + Sync {
 	async fn find_issue_by_id(
 		&self,
-		project_id: GithubProjectId,
+		project_id: GithubRepoId,
 		issue_number: GithubIssueNumber,
 	) -> Result<GithubIssue, Error>;
 
-	async fn find_repository_by_id(&self, project_id: GithubProjectId)
-	-> Result<GithubRepo, Error>;
+	async fn find_repository_by_id(&self, project_id: GithubRepoId) -> Result<GithubRepo, Error>;
 
 	async fn find_user_by_id(&self, user_id: GithubUserId) -> Result<GithubUser, Error>;
 

@@ -18,6 +18,6 @@ pub enum Error {
 #[cfg_attr(test, automock)]
 pub trait Repository: Send + Sync {
 	fn insert(&self, project: ProjectProjection) -> Result<(), Error>;
-	fn find_by_id(&self, project_id: GithubProjectId) -> Result<ProjectProjection, Error>;
+	fn find_by_id(&self, project_id: GithubRepoId) -> Result<ProjectProjection, Error>;
 	fn list(&self) -> Result<Vec<ProjectProjection>, Error>;
 }

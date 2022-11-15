@@ -28,7 +28,7 @@ impl GithubProjectProjector {
 		}
 	}
 
-	async fn on_contribution_created(&self, project_id: GithubProjectId) -> Result<(), Error> {
+	async fn on_contribution_created(&self, project_id: GithubRepoId) -> Result<(), Error> {
 		if self.project_projection_repository.find_by_id(project_id).is_err() {
 			let repo = self.github_client.find_repository_by_id(project_id).await?;
 			self.project_projection_repository.insert(ProjectProjection {
@@ -82,12 +82,12 @@ mod tests {
 	}
 
 	#[fixture]
-	fn project_id() -> GithubProjectId {
+	fn project_id() -> GithubRepoId {
 		1234
 	}
 
 	#[fixture]
-	fn contribution_created_event(project_id: GithubProjectId) -> Event {
+	fn contribution_created_event(project_id: GithubRepoId) -> Event {
 		Event::Contribution(ContributionEvent::Created {
 			id: Default::default(),
 			project_id,
@@ -97,7 +97,7 @@ mod tests {
 	}
 
 	#[fixture]
-	fn repo(project_id: GithubProjectId) -> GithubRepo {
+	fn repo(project_id: GithubRepoId) -> GithubRepo {
 		GithubRepo {
 			project_id,
 			..Default::default()
@@ -108,7 +108,7 @@ mod tests {
 	async fn project_gets_created_with_contribution(
 		mut github_client: MockGithubClient,
 		mut project_projection_repository: MockProjectProjectionRepository,
-		project_id: GithubProjectId,
+		project_id: GithubRepoId,
 		contribution_created_event: Event,
 		repo: GithubRepo,
 	) {
@@ -150,7 +150,7 @@ mod tests {
 	async fn project_is_not_stored_if_already_present(
 		mut github_client: MockGithubClient,
 		mut project_projection_repository: MockProjectProjectionRepository,
-		project_id: GithubProjectId,
+		project_id: GithubRepoId,
 		contribution_created_event: Event,
 		repo: GithubRepo,
 	) {

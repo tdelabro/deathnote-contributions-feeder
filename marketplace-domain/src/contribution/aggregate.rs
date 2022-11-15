@@ -22,7 +22,7 @@ pub enum Error {
 #[derive(Default, Debug, Clone, PartialEq, Eq)]
 pub struct Contribution {
 	id: Id,
-	project_id: GithubProjectId,
+	project_id: GithubRepoId,
 	issue_number: GithubIssueNumber,
 	gate: u8,
 	contributor_account_address: Option<ContributorAccountAddress>,

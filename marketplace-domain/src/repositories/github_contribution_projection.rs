@@ -1,6 +1,5 @@
 use crate::{
-	ContributionId, ContributionStatus, ContributorAccountAddress, GithubContribution,
-	GithubProjectId,
+	ContributionId, ContributionStatus, ContributorAccountAddress, GithubContribution, GithubRepoId,
 };
 use mockall::automock;
 use thiserror::Error;
@@ -45,8 +44,5 @@ pub trait Repository: Send + Sync {
 
 	fn update_gate(&self, contribution_id: ContributionId, gate: u8) -> Result<(), Error>;
 
-	fn list_by_project(
-		&self,
-		project_id: &GithubProjectId,
-	) -> Result<Vec<GithubContribution>, Error>;
+	fn list_by_project(&self, project_id: &GithubRepoId) -> Result<Vec<GithubContribution>, Error>;
 }
